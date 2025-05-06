@@ -1,0 +1,430 @@
+/*frontend\src\pages\atislar.css*/
+:root {
+  --primary-color: #3f51b5;
+  --primary-color-rgb: 63, 81, 181;
+  --primary-light: #7986cb;
+  --primary-dark: #303f9f;
+  --secondary-color: #ff4081;
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #ffffff;
+  --panel-bg: #f9f9f9;
+  --error-color: #f44336;
+  --success-color: #4caf50;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --border-radius: 12px;
+}
+
+/* Atışlar ana container'ı - prefix eklenerek çakışmalar önleniyor */
+.fizik-atis__container {
+  max-width: 1600px;
+  margin: 0;
+  padding: 0 20px 20px 20px; 
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  transition: all 0.3s ease;
+}
+
+/* Header bölümü */
+.fizik-atis__header {
+  text-align: center;
+  margin-bottom: 1rem; 
+  margin-top: 0;
+  padding-top: 0.5rem; 
+}
+
+.fizik-atis__header h1 {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.fizik-atis__header-desc {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Content bölümü */
+.fizik-atis__content {
+  display: grid;
+  grid-template-columns: 350px 1fr; 
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Panel bileşenleri */
+.fizik-atis__input-panel {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  height: fit-content;
+  width: 100%;
+}
+
+.fizik-atis__simulation-panel {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.fizik-atis__panel-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem 1rem; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fizik-atis__panel-header h2 {
+  margin: 0;
+  font-size: 1.3rem; 
+  font-weight: 500;
+}
+
+/* Input grupları */
+.fizik-atis__input-group {
+  padding: 0.6rem;
+  border-bottom: 1px solid rgba(125, 125, 125, 0.1);
+}
+
+.fizik-atis__input-group label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.fizik-atis__value-input {
+  display: flex;
+  align-items: center;
+  background: var(--bg-primary);
+  padding: 0.2rem 0.5rem;
+  border-radius: calc(var(--border-radius) - 4px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.fizik-atis__value-input input {
+  width: 65px;
+  background: transparent;
+  border: none;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: right;
+  padding: 0.3rem;
+}
+
+.fizik-atis__value-input input:focus {
+  outline: none;
+  background-color: rgba(var(--primary-color-rgb), 0.05);
+}
+
+.fizik-atis__unit {
+  margin-left: 6px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Radio grupları */
+.fizik-atis__radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.fizik-atis__radio-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 16px;
+  background-color: var(--bg-primary);
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 100px;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+
+.fizik-atis__radio-button.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.fizik-atis__radio-button input {
+  display: none;
+}
+
+.fizik-atis__radio-button span {
+  margin-left: 8px;
+}
+
+/* Sonuç paneli */
+.fizik-atis__result-panel {
+  padding: 0.6rem;
+  background-color: rgba(var(--primary-color-rgb), 0.05);
+}
+
+.fizik-atis__result-panel h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.fizik-atis__result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 0.8rem; 
+}
+
+.fizik-atis__result-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--bg-primary);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.fizik-atis__result-item:hover {
+  transform: translateY(-3px);
+}
+
+.fizik-atis__result-icon {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.fizik-atis__result-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.fizik-atis__result-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* Hata paneli */
+.fizik-atis__error-panel {
+  margin: 1.2rem;
+  padding: 1rem;
+  background-color: rgba(244, 67, 54, 0.1);
+  border-left: 4px solid var(--error-color);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.fizik-atis__error-icon {
+  font-size: 1.5rem;
+  margin-right: 12px;
+}
+
+.fizik-atis__error-panel p {
+  margin: 0;
+  color: var(--error-color);
+}
+
+/* Kontroller */
+.fizik-atis__controls {
+  padding: 0.6rem;
+  display: flex;
+  gap: 0.8rem; 
+  justify-content: center;
+}
+
+.fizik-atis__button {
+  padding: 8px 16px;
+  border-radius: 50px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.fizik-atis__primary-button {
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 4px 10px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.fizik-atis__secondary-button {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--primary-color);
+}
+
+.fizik-atis__button:hover {
+  transform: translateY(-3px);
+}
+
+.fizik-atis__button:active {
+  transform: translateY(1px);
+}
+
+.fizik-atis__button-icon {
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+/* Animasyon kontrolleri */
+.fizik-atis__animation-controls {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.fizik-atis__speed-control {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: white;
+}
+
+.fizik-atis__speed-button {
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fizik-atis__speed-button.active {
+  background-color: white;
+  color: var(--primary-color);
+}
+
+.fizik-atis__control-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.fizik-atis__control-button {
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fizik-atis__control-button:hover, 
+.fizik-atis__speed-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.fizik-atis__control-button.active {
+  background-color: white;
+  color: var(--primary-color);
+}
+
+/* Canvas */
+.fizik-atis__canvas-container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius);
+}
+
+.fizik-atis__simulation-canvas {
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+  background-color: var(--bg-primary); 
+  border-radius: 8px;
+  box-shadow: none; 
+}
+
+.fizik-atis__animation-status {
+  margin-top: 12px;
+  color: var(--text-secondary);
+  font-style: italic;
+  text-align: center;
+}
+
+/* Responsive tasarım */
+@media (max-width: 1300px) { 
+  .fizik-atis__content {
+    grid-template-columns: 1fr;
+  }
+  
+  .fizik-atis__input-panel {
+    width: 100%;
+  }
+  
+  .fizik-atis__result-grid {
+    grid-template-columns: repeat(4, 1fr); 
+  }
+}
+
+@media (max-width: 768px) {
+  .fizik-atis__header h1 {
+    font-size: 2rem;
+  }
+  
+  .fizik-atis__header-desc {
+    font-size: 1rem;
+  }
+  
+  .fizik-atis__panel-header h2 {
+    font-size: 1.2rem;
+  }
+  
+  .fizik-atis__controls {
+    flex-direction: column;
+  }
+  
+  .fizik-atis__input-group label {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .fizik-atis__value-input {
+    margin-top: 6px;
+    width: 100%;
+  }
+  
+  .fizik-atis__radio-group {
+    flex-direction: column;
+  }
+  
+  .fizik-atis__result-grid {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}

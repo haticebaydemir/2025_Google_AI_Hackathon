@@ -1,0 +1,268 @@
+/*frontend\src\pages\ComingSoon.css*/
+.coming-soon-page {
+  min-height: 80vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px; 
+}
+
+.coming-soon-container {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  padding: 20px 30px; 
+  width: 85%;
+  max-width: 800px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.coming-soon-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+}
+
+.coming-soon-icon {
+  font-size: 3rem; 
+  color: #3b82f6;
+  margin-bottom: 15px; 
+  animation: pulse 2s infinite;
+  display: inline-block;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.coming-soon-title {
+  font-size: 1.8rem; 
+  color: #1f2937;
+  margin-bottom: 10px; 
+  font-weight: 600;
+}
+
+.coming-soon-subtitle {
+  font-size: 1.2rem; 
+  color: #4b5563;
+  margin-bottom: 15px; 
+  font-weight: 400;
+  display: inline-block;
+  position: relative;
+}
+
+.coming-soon-subtitle::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #3b82f6;
+  border-radius: 3px;
+}
+
+.coming-soon-message {
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  padding: 15px; 
+  margin-bottom: 15px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification-icon {
+  font-size: 2rem;
+  color: #f59e0b;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+.coming-soon-message p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.coming-soon-info {
+  text-align: left;
+  margin-bottom: 15px; 
+}
+
+.coming-soon-info p {
+  margin-bottom: 10px; 
+  color: #4b5563;
+}
+
+.coming-soon-info ul {
+  list-style: none;
+  padding-left: 5px; 
+  margin-top: 10px; 
+}
+
+.coming-soon-info li {
+  margin-bottom: 8px; 
+  position: relative;
+  padding-left: 20px;
+  color: #4b5563;
+  font-size: 0.95rem; 
+}
+
+.coming-soon-info li::before {
+  content: "•";
+  color: #3b82f6;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.highlight {
+  font-weight: 700; 
+  font-size: 1.3rem; 
+  color: #3b82f6;
+  display: inline-block;
+  background-color: rgba(59, 130, 246, 0.1); 
+  padding: 6px 15px; 
+  border-radius: 6px; 
+  border-left: 4px solid #3b82f6; 
+  margin-top: 15px; 
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.15); 
+  position: relative;
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+}
+
+
+.highlight::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { opacity: 0.2; }
+  50% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+
+.back-btn {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 20px; 
+  border-radius: 8px;
+  margin-top: 10px; 
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  font-size: 0.95rem; 
+}
+
+.back-btn:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.back-btn svg {
+  margin-right: 10px;
+}
+
+
+@media (max-height: 700px) {
+  .coming-soon-page {
+    min-height: auto;
+    padding: 15px 0;
+  }
+  
+  .coming-soon-container {
+    padding: 15px 20px;
+  }
+  
+  .coming-soon-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .coming-soon-title {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+  }
+  
+  .coming-soon-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+  
+  .coming-soon-info li {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+}
+
+
+@media (min-width: 1300px) and (max-width: 1600px) and (max-height: 900px) {
+  .coming-soon-container {
+    width: 75%;
+    max-width: 700px;
+    padding: 20px 25px;
+  }
+  
+  .coming-soon-title {
+    font-size: 1.7rem;
+  }
+  
+  .coming-soon-info {
+    margin-bottom: 10px;
+  }
+  
+  .coming-soon-info ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .coming-soon-info li {
+    width: 48%;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .coming-soon-container {
+    padding: 30px 20px;
+  }
+  
+  .coming-soon-title {
+    font-size: 2rem;
+  }
+  
+  .coming-soon-subtitle {
+    font-size: 1.5rem;
+  }
+  
+  .coming-soon-icon {
+    font-size: 4rem;
+  }
+}

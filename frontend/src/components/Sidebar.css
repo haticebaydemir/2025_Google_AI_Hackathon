@@ -1,0 +1,471 @@
+/*frontend\src\components\Sidebar.css*/
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 260px; /* 320px'den 260px'e düşürüldü */
+  background: linear-gradient(145deg, #1a1c2e, #252850);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000; /* Bu değeri koruyoruz */
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+/* Sidebar kapalıyken kullanılacak class */
+.sidebar.closed {
+  width: 70px; /* Kapalı haldeki genişlik */
+  overflow: visible;
+}
+
+/* Kapalı haldeyken sadece ikonların görünmesi için */
+.sidebar.closed .text,
+.sidebar.closed .arrow,
+.sidebar.closed .category-label::after,
+.sidebar.closed .logout-text {
+  display: none;
+}
+
+.sidebar.closed .logo-container h2 {
+  font-size: 0;
+}
+
+.sidebar.closed .logo-container h2::before {
+  content: "YD";
+  font-size: 1.5rem;
+}
+
+.sidebar.closed .logo-container h2::after {
+  width: 80%;
+  left: 10%;
+}
+
+.sidebar.closed .menu-item a, 
+.sidebar.closed .menu-title {
+  justify-content: center;
+  padding: 15px 0;
+}
+
+.sidebar.closed .icon {
+  margin-right: 0;
+  font-size: 1.2rem;
+}
+
+.sidebar.closed .sub-menu {
+  position: absolute;
+  left: 70px; /* Sidebar genişliği kadar */
+  top: 0;
+  background: #252850;
+  margin-left: 0;
+  padding: 10px;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+  min-width: 190px;
+  z-index: 1005; /* Sub-menu z-indexini artırıyoruz */
+  display: none;
+}
+
+.sidebar.closed .menu-item.has-submenu:hover .sub-menu {
+  display: block;
+}
+
+.sidebar.closed .sub-menu-item a {
+  padding: 8px 15px;
+  justify-content: flex-start;
+}
+
+.sidebar.closed .sub-menu-item a .icon {
+  margin-right: 10px;
+}
+
+.sidebar.closed .sub-menu-item a .text {
+  display: inline-block;
+}
+
+/* Sidebar toggle butonu */
+.sidebar-toggle {
+  position: absolute;
+  top: 70px;
+  right: -15px;
+  width: 30px;
+  height: 30px;
+  background: #3d85f3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #fff;
+  z-index: 1010; /* Butonun z-indexini artırıyoruz */
+  transition: all 0.3s;
+}
+
+.sidebar-toggle:hover {
+  transform: scale(1.1);
+}
+
+.sidebar-toggle svg {
+  transition: transform 0.3s;
+}
+
+.sidebar.closed .sidebar-toggle svg {
+  transform: rotate(180deg);
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 1rem; 
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 0px; 
+  height: 70px; 
+}
+
+.logo-container h2 {
+  color: #fff;
+  margin: 0;
+  font-size: 1.7rem; 
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.5px;
+  position: relative;
+  display: inline-block;
+}
+
+.logo-container h2::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #3d85f3, #6c5ce7);
+  border-radius: 3px;
+}
+
+.menu-items {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 10px; 
+  scroll-behavior: smooth;
+}
+
+.menu-items::-webkit-scrollbar {
+  width: 4px; 
+}
+
+.menu-items::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.menu-items::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.menu-items::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.menu-items ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  margin-bottom: 6px; 
+  position: relative;
+}
+
+.menu-item a, .menu-title {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px; 
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  border-radius: 10px; 
+  transition: all 0.3s;
+  cursor: pointer;
+  font-size: 0.95rem; 
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-item a::before, .menu-title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  transition: left 0.7s;
+}
+
+.menu-item a:hover::before, .menu-title:hover::before {
+  left: 100%;
+}
+
+.menu-item a:hover, .menu-title:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(3px); 
+}
+
+.menu-item a.active {
+  background: linear-gradient(45deg, #3d85f3, #6c5ce7);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(108, 92, 231, 0.4);
+  transform: translateX(0);
+}
+
+.menu-item a.active::before {
+  display: none;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px; 
+  font-size: 1.1rem; 
+  width: 20px; 
+  height: 20px; 
+  transition: all 0.3s;
+  position: relative;
+}
+
+.menu-item a:hover .icon, .menu-title:hover .icon {
+  transform: scale(1.1);
+  color: #3d85f3;
+}
+
+.menu-item a.active .icon {
+  color: #fff;
+}
+
+.text {
+  flex-grow: 1;
+  letter-spacing: 0.3px;
+}
+
+.arrow {
+  margin-left: 8px; 
+  transition: transform 0.3s;
+}
+
+.expanded .arrow svg {
+  transform: rotate(180deg);
+}
+
+.has-submenu .menu-title {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.sub-menu {
+  margin-left: 15px; 
+  margin-top: 5px; 
+  margin-bottom: 10px; 
+  padding-left: 8px; 
+  border-left: 2px solid rgba(108, 92, 231, 0.4);
+  position: relative;
+}
+
+.sub-menu::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 2px;
+  height: 0;
+  background: linear-gradient(180deg, #3d85f3, #6c5ce7);
+  animation: growDown 1s forwards;
+}
+
+@keyframes growDown {
+  from { height: 0; }
+  to { height: 100%; }
+}
+
+.sub-menu-item a {
+  padding: 8px 12px; 
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem; 
+  font-weight: normal;
+  transition: all 0.25s;
+  border-radius: 8px; 
+}
+
+.sub-menu-item a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.sub-menu-item a.active {
+  background: rgba(108, 92, 231, 0.25);
+  border-left: 3px solid #6c5ce7;
+  padding-left: 9px; 
+  box-shadow: 0 3px 8px rgba(108, 92, 231, 0.2);
+}
+
+.logout-container {
+  padding: 15px 12px; 
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 15px; 
+  background: linear-gradient(45deg, #ca1c2b, #d91432);
+  color: white;
+  border: none;
+  border-radius: 10px; 
+  cursor: pointer;
+  font-size: 0.9rem; 
+  font-weight: 600;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+}
+
+.logout-button::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0));
+  transform: rotate(30deg);
+  transition: transform 0.6s;
+}
+
+.logout-button:hover {
+  transform: translateY(-2px); 
+  box-shadow: 0 6px 15px rgba(255, 71, 87, 0.4);
+}
+
+.logout-button:hover::after {
+  transform: rotate(30deg) translate(10%, 10%);
+}
+
+.logout-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
+}
+
+.logout-icon {
+  font-size: 18px; 
+  margin-right: 10px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logout-text {
+  letter-spacing: 0.5px;
+}
+
+
+.category-label {
+  display: block;
+  font-size: 0.7rem; 
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 12px 0 6px 8px; 
+  position: relative;
+}
+
+.category-label::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  background: rgba(108, 92, 231, 0.5);
+  border-radius: 2px;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 75%;
+    min-width: 260px;
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .sidebar.closed {
+    transform: translateX(-100%);
+    width: 75%;
+  }
+  
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  .logout-button {
+    padding: 10px 15px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1400px) {
+  .sidebar {
+    width: 240px; /* Daha da daraldı */
+  }
+  
+  .menu-item a, .menu-title {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .icon {
+    margin-right: 8px;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1900px) {
+  .sidebar {
+    width: 280px; /* Büyük ekranlarda bile 320px yerine 280px */
+  }
+  
+  .logo-container h2 {
+    font-size: 1.7rem;
+  }
+  
+  .menu-item a, .menu-title {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+  
+  .icon {
+    font-size: 1.2rem;
+    margin-right: 12px;
+  }
+}
