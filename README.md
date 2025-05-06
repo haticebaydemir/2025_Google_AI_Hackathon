@@ -32,4 +32,5 @@ Geliştirilmesi gereken yönümüz ise kısıtlı zamanımızdan dolayı bu yön
 
 
 Projenizin demo videosu
+https://www.youtube.com/watch?v=omePUXC9HOE
 
